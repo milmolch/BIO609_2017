@@ -25,7 +25,7 @@ heidi.lischer@ieu.uzh.ch
 14.30 - 17.30 | **Bash scripting** <br /> [Presentation](BashScripting.pdf) \| [Hands-on](Exercises_BashScripting.pdf) | HTL
 
 
-[Etherpad](https://public.etherpad-mozilla.org/p/BIO609_2016)
+[Etherpad](https://public.etherpad-mozilla.org/p/BIO609_2017)
 
 
 ## Installation Instructions for the Virtual Machine (VM)

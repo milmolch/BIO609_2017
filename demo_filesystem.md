@@ -99,7 +99,7 @@ There are 5 items in this directory with no trailing slash, so they are files.
 
 Most programs take additional arguments that control their exact
 behavior. For example, `-F` and `-l` are arguments to `ls`.  The `ls`
-program, like many programs, take a lot of arguments. Another useful one is '-a',
+program, like many programs, takes a lot of arguments. Another useful one is '-a',
 which show everything, including hidden files.  How do we
 know what the options are to particular commands?
 
@@ -148,7 +148,7 @@ This is called a hierarchical file system structure, like an upside down tree
 with root (/) at the base that looks like this.
 
 
-![Unix](IMG/Slide1.jpg)
+![Unix](IMG/Slide_Path2.png)
 
 That (/) at the base is often also called the 'top' level.
 
@@ -221,31 +221,6 @@ the intermediate directory.
 ### Exercise
 
 List the 'ERR000061_500_1.fastq' file from your home directory without changing directories
-
-
-### Shortcut: Tab Completion
-
-Navigate to the home directory. Typing out directory names can waste a
-lot of time. When you start typing out the name of a directory, then
-hit the tab key, the shell will try to fill in the rest of the
-directory name. For example, type `cd` to get back to your home directy, then enter:
-```
-    cd ba<tab>
-```
-The shell will fill in the rest of the directory name for
-`bashScripting`. Now go to bashScripting/data_script
-```
-    ls ER<tab><tab>
-```
-When you hit the first tab, nothing happens. The reason is that there
-are multiple directories in the home directory which start with
-`ER`. Thus, the shell does not know which one to fill in. When you hit
-tab again, the shell will list the possible choices.
-
-Tab completion can also fill in the names of programs. For example,
-enter `e<tab><tab>`. You will see the name of every program that
-starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
-will see that tab completion works.
 
 
 
@@ -332,8 +307,32 @@ your convenience.
 
 ### Our data set: FASTQ files
 
-We did an experiment and want to look at sequencing results.
+We did an experiment and want to look at the sequencing results.
 We want to be able to look at these files and do some things with them.
+
+### Shortcut: Tab Completion
+
+Navigate to the home directory. Typing out directory names can waste a
+lot of time. When you start typing out the name of a directory, then
+hit the tab key, the shell will try to fill in the rest of the
+directory name. For example, type `cd` to get back to your home directy, then enter:
+```
+    cd ba<tab>
+```
+The shell will fill in the rest of the directory name for
+`bashScripting`. Now go to bashScripting/data_script
+```
+    ls ER<tab><tab>
+```
+When you hit the first tab, nothing happens. The reason is that there
+are multiple directories in the home directory which start with
+`ER`. Thus, the shell does not know which one to fill in. When you hit
+tab again, the shell will list the possible choices.
+
+Tab completion can also fill in the names of programs. For example,
+enter `e<tab><tab>`. You will see the name of every program that
+starts with an `e`. One of those is `echo`. If you enter `ec<tab>` you
+will see that tab completion works.
 
 
 ### Wild cards
@@ -355,7 +354,7 @@ Lists every file in `/usr/bin` that ends in the characters `.sh`.
 ```
     ls *_1.fastq
 ```
-lists only the file that ends with '_1.fastq'
+lists only the file(s) ending with '_1.fastq'
 
 So how does this actually work? Well...when the shell (bash) sees a
 word that contains the `*` character, it automatically looks for filenames
@@ -369,7 +368,7 @@ We can use the command 'echo' to see wildcards are they are intepreted by the sh
 The '*' is expanded to include any file that ends with '.fastq'
 
 
-### Exercise**
+### Exercise
 
 Do each of the following using a single `ls` command without
 navigating to a different directory.
