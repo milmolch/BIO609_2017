@@ -35,7 +35,7 @@ internet access, because you're going to get it off the web.
 
 You need to download some files to follow this lesson:  
 1. Open a terminal  
-2. Download bashScripting.zip (prepared by Heidi): `wget https://www.dropbox.com/s/4x34u51vn1za17f/bashScripting.zip`  
+2. Download bashScripting.zip (prepared by Heidi): `https://www.dropbox.com/s/fa2ga0ioc0ua8vt/bashScripting.zip`  
 3. Unzip the file doing: `unzip bashScripting.zip`  
 
 Let's check out the example data.
