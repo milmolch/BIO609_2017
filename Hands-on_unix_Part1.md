@@ -282,7 +282,7 @@ $ cut -f 1 At.gff|The command cut can be used to extract columns from a file. He
 $ cut -f 2 At.gff|Now we extract column 2|
 $ cut −f 1,3 At.gff|or columns 1 and 3|
 $ cut -f1-3,6,7- At.gff|cut out the 1st, 2nd, 3rd, 5th, 7th and following columns|
-$ cut -d" " -f 3 input.txt|Cut out column 3 with columns separated by a single space|
+$ cut -d" " -f 3 input.txt|Cut out column 3 with columns separated by a single space. would be -d "," with a comma-separated file |
 
 
 ### tr – replace/delete text
@@ -407,6 +407,51 @@ awk '/gene/ {c++} END {print c}' At.gff|Count lines containing “gene”|
 awk '$4>max {max=$4; maxline=$0} END {print maxline}' At.gff|Print the maximum value of column 4 observed in the file|
 awk 'BEGIN {FS="\t"} {print NF}' At.gff \| sort \| uniq -c|Handy to check proper formatting – same number of columns over all lines.|
 
+### GNU datamash
+
+[GNU datamash](https://www.gnu.org/software/datamash/) is a command-line program which performs basic numeric,textual and statistical operations on input textual data files. It works well together with other common unix commands:  
+  
+  
+Calculate basic stats for gene Length (count, mean length and stddev)  
+```
+awk '$3=="gene" {print $5-$4}' TAIR10_GFF3_genes.gff | datamash count 1 mean 1 sstdev 1 
+28775	2126,6463596872	1622,446634239
+```
+For each gene we print out gene length (column5 - column4). After each datamash operation we indicate on which column ii has to operate (here always column 1)  
+
+
+  
+Calculate basic stats for exon length (count, 1st quartile, median, 3rd quartile, interquartile range IQR)  
+```
+awk '$3=="exon" {print $5-$4}' TAIR10_GFF3_genes.gff | datamash count 1 q1 1 median 1 q3 1 iqr 1
+215909	88	149	311	223
+```
+
+Examine exon length (minimum, maximum, sum)  
+```
+awk '$3=="exon" {print $5-$4}' TAIR10_GFF3_genes.gff | datamash min 1 max 1 sum 1
+0	15194	63770703
+```
+
+It's easy to group data (here by gene (column 9)). Here we print the number of exons per gene with basic stats about exon length      
+```
+awk '$3=="exon" {print $5-$4"\t"$9}' TAIR10_GFF3_genes.gff | sed 's/Parent=//' | datamash -s -g 2 count 1 min 1 max 1 mean 1 | head
+AT1G01010.1	6	119	460	280,33333333333
+AT1G01020.1	10	45	632	161,3
+AT1G01020.2	8	45	293	134,625
+AT1G01030.1	2	379	1524	951,5
+AT1G01040.1	20	95	1305	311,55
+AT1G01040.2	20	95	1035	292,85
+AT1G01046.1	1	206	206	206
+AT1G01050.1	9	28	254	107,44444444444
+AT1G01060.1	9	25	1073	299,44444444444
+AT1G01060.2	8	61	1073	350,75
+```
+
+
+Find more (including complex) examples [here](https://www.gnu.org/software/datamash/examples/#example_genes). Of course we could use R instead, but datamash is much faster for big files and handy for quick checks. Check its website or `man datamash` for more examples.
+
+
 ### Even more useful commands
 
 Explore using the man command and google searches
@@ -513,7 +558,7 @@ grep -c -w mRNA TAIR10_GFF3_genes.gff
 35386
 ```
   Or we could also pipe the grep result into wc: `grep -w gene TAIR10_GFF3_genes.gff | wc -l`
-  With the `-w` parameter we count only lines where "gene" occurs as a separate word. If we use grep without the `-w` parameter lines containing `protein_coding_gene` will also be counted. See further below for a safe solution using `awk`. 
+  With the `-w` parameter we count only lines where "gene" occurs as a separate word. If we use grep without the `-w` parameter lines containing `protein_coding_gene` or `pseudogene` will also be counted. See further below for a safe solution using `awk`. 
 
 
 6. How many miRNA genes are encoded in the genome?  
@@ -527,6 +572,10 @@ grep -c -w mRNA TAIR10_GFF3_genes.gff
   ```
 grep -w Chr1 TAIR10_GFF3_genes.gff | grep -w 3535383 | grep -w 3538439 | grep -w gene
 Chr1	TAIR10	gene	3535383	3538439	.	+	.	ID=AT1G10670;Note=protein_coding_gene;Name=AT1G10670
+```
+safe solution using awk:  
+```
+awk 'BEGIN {FS="\t"} $1=="Chr1" && $3=="gene" && $4==3535383 && $5<=3538439 {print}' TAIR10_GFF3_genes.gff
 ```
 
 8. (Advanced) Which types of RNAs are annotated? 
