@@ -21,8 +21,8 @@ heidi.lischer@ieu.uzh.ch
 9.30 - 9.40 | **Welcome & Introduction** | SW&HTL
 9.40 - 12.30 | **Introduction to the command line** <br /> Working with files, working with text, pipes <br /> [Presentation](LinuxBash.pdf)  \| [Demo](demo_filesystem.md) \| [Hands-on 1](Hands-on_unix_Part1.md) \| [Hands-on 2](Hands-on_unix_Part2.md) | SW
  | |
-13.30 - 14.30 | Working with text files | SW
-14.30 - 17.30 | **Bash scripting** <br /> [Presentation](BashScripting.pdf) \| [Hands-on](Exercises_BashScripting.pdf) | HTL
+13.30 - 14.00 | Working with text files | SW
+14.00 - 17.30 | **Bash scripting** <br /> [Presentation](BashScripting.pdf) \| [Hands-on](Exercises_BashScripting.pdf) | HTL
 
 
 [Etherpad](https://public.etherpad-mozilla.org/p/BIO609_2017)
