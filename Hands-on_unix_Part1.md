@@ -91,7 +91,7 @@ $ **less** tmp/poem.txt|less is a convenient command for displaying file content
 $ **grep** house tmp/poem.txt|if you are searching for something, you can use **grep** *text* to display only lines matching text|
 $ **wc** tmp/poem.txt|displays the number of lines in the file|
 $ **wc** -w tmp/poem.txt|counts the words in the file|
-$ **cp** tmp/p + `TAB`|if you start typing “cp tmp/d" and then press `TAB`, what happens?|
+$ **cp** tmp/p + `TAB`|if you start typing “cp tmp/p" and then press `TAB`, what happens?|
 $ **cd** \~/tmp|change current directory to directory tmp  | (On Mac OS X press alt+n for ~) 
 $ **cp** poem.txt poem2.txt|cp is used to copy the file data.tab to file data2.tab|
 $ **ls** -l|you should see 2 files now|
@@ -204,7 +204,7 @@ If there are multiple options, they will be listed|
 
 - What were the options of your last grep command? wc command?
 
-- Explore the the files and subdirectories of the root directory: ls / + `TAB`
+- Explore the files and subdirectories of the root directory: ls / + `TAB`
 
 - TAB completion also works with commands: list all commands starting with "g", "gr", "gre"
 
@@ -400,7 +400,7 @@ awk '{sum=$4+$5;print sum,$0}' At.gff|Print out sum of columns 4 and 5 before th
 awk '{$2=$4+$5;print}' At.gff|Replace column 2 by the sum of columns 4 and 5|
 awk 'BEGIN {OFS="\t"} {print $4,$2,$3,$1}' At.gff|We want to create tab-separated output (default is space-separated output)|
 awk 'BEGIN {FS=",";OFS="\t"} {print $4,$2,$3,$1}' input.file|We have to change the input field separator as the input file indB.txt is comma-separated (`,`)|
-awk '$4>1000 && $5<6000 {print $0}’ At.gff|Shows all lines for positions between 100 and 200|
+awk '$4>1000 && $5<6000 {print $0}’ At.gff|Shows all lines for positions between 1000 and 6000|
 awk '{SUM+=$4} END {print SUM}' input.txt|Print out the sum of column 4 over the whole file|
 awk '{SUM+=$4} END {print SUM/NR}' At.gff|Print out the mean of column 4|
 awk '/gene/ {c++} END {print c}' At.gff|Count lines containing “gene”| 
